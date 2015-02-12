@@ -7,5 +7,8 @@ filetype='jpg';
 
 [red,blue,green,exposures,files] = image_reader(directory, filetype);
 
+Z=red;
+B=log(exposures)
+l=1;
 
-%[g,lE]=gsolve(Z,B,l,w)
+[g,lE]=solveSVD(Z,B,l,@weightcal);
