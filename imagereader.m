@@ -1,26 +1,29 @@
-directory = '/Users/eyoong/Downloads/exposures/'
-
-function[red,blue,green,exposures,files] = imageio(directory)
+function[red,blue,green,logexpo,files] = imagereader(directory)
 
 files = dir([directory,'*.jpg']);
 numpics = length(files);
+filenames=[];
+for i=1:numpics
+filenames{1}=strcat(directory,files(i).name);
+end
 numsamplepixels=ceil(255/(numpics-1))*2;
 totalpixels = size(imread([directory,files(1).name]),1)*size(imread([directory,files(1).name]),2);
 interval = floor(totalpixels/numsamplepixels);
-smplindices = (1:interval:totalpixels)';
+smplindices = (interval:interval:totalpixels)';
 
 expoinfo = dir([directory,'*.txt']);
 txtname = strcat(directory,expoinfo(1).name);
 fid=fopen(txtname);
-exposures=zeros(numpics,1);
+logexpo = zeros(totalpixels,numpics);
 
 for i = 1:numpics
 tmp=fgets(fid);
 if tmp(2) == '/'
-exposures(i)=1/str2double(tmp(3:1:length(tmp)));
+exposures=1/str2double(tmp(3:1:length(tmp)));
 else
-exposures(i)=str2double(tmp);
+exposures=str2double(tmp);
 end
+logexpo(:,i)=log(exposures);
 end
 
 
