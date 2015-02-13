@@ -1,7 +1,7 @@
 function[weight] = weightcal(pixelval)
 
 if pixelval <= (0.5*(256+1))
-weight = pixelval - 1;
+weight = pixelval;
 else
-weight = 256 - pixelval;
+weight = 257 - pixelval;
 end
