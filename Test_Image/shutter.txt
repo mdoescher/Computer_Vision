@@ -1,17 +1,13 @@
-This picture set is from 
-http://www.mpi-inf.mpg.de/resources/hdr/calibration/index.html
-
-
-img01: 13
-img02: 10
-img03: 4
-img04: 3.2
-img05: 1
-img06: 0.8
-img07: 0.3
-img08: 1/4
-img09: 1/60
-img10: 1/80
-img11: 1/320
-img12: 1/400
-img13: 1/1000
+13.0000
+10.0000
+4.0000
+3.2000
+1.0000
+0.8000
+0.3000
+0.2500
+0.0167
+0.0125
+0.0031
+0.0025
+0.0010
