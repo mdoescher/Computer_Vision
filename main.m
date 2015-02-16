@@ -1,8 +1,11 @@
 clc;
 
 %directory = strcat('/Users/eyoong/Downloads/exposures/');
-directory='Test_Image/';
+
+%directory='Test/';
+
 [r,b,g,le,files,s]=imagereader(directory);
+[aligned_images]=align_images(files);
 
 lambda = 100;
 weights=zeros(1,256);
@@ -16,5 +19,7 @@ end
 
 [hdrmap]=radiancemap(redres,blueres,greenres,weights,le,files,directory);
 
+
 %imshow(hdrmap);
-imshow(tonemap(hdrmap));
+figure
+imshow(tonemap(hdrmap))
