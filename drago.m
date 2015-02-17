@@ -1,4 +1,4 @@
-function [ hdrmap ] = drago(hdr, bias, ldmax, expo,cont)
+function [ hdrmap ] = drago(hdr, bias, expo,cont)
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
 [hdr, min, max, average] = rgb2Yxy(hdr);
