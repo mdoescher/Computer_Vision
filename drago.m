@@ -6,7 +6,6 @@ function [ hdrmap ] = drago(hdr, bias, expo,cont)
 adapt = 1;
 lumav = exp(average)/adapt;
 lwmax = max/lumav;
-scal = (ldmax*0.01)/(log10(lwmax+1));
 
 for i = 1:size(hdr,1)
     for j = 1:size(hdr,2)
