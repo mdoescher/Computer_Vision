@@ -1,6 +1,8 @@
 function [ hdr ] = Yxy2rgb( hdr )
-%YXY2RGB Summary of this function goes here
-%   Detailed explanation goes here
+% Convert Yxy colorspace to rgb
+% http://www.easyrgb.com/?X=MATH
+%http://www.cs.rit.edu/~ncs/color/t_convert.html
+
 Yxy2rgb = [2.5651 -1.1665 -0.3986; ...
     -1.0217 1.9777 0.0439; 0.0753 -0.2543 1.1892];
 tmp = zeros(3,1);

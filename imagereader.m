@@ -1,7 +1,7 @@
 function[red,blue,green,logexpo,files, smplindices] = imagereader(directory)
 
 % read the filenames
-files = dir([directory,'*.jpg']);
+files = dir([directory,'*.JPG']);
 numpics = length(files);
 
 %filenames=[];
