@@ -1,12 +1,12 @@
 clc;
-%clearvars;
+clearvars;
 
 %directory = strcat('/Users/eyoong/Downloads/exposures/'); extension='jpg';
 %directory='Test/'; extension='jpg';
 %directory='Car/'; extension='JPG';
 directory='Construction/'; extension='JPG';
 
-% recursive depth for image alignment - maximum of 2^depth pixel shift
+% recursive depth for image alignment - maximum of 2^(depth-1) pixel shift
 depth = 5;
 
 [files, images, log_exposure] = load_images(directory, extension);

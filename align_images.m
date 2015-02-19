@@ -20,17 +20,15 @@ for i=1:n
     max_x=max(max_x,x);min_x=min(min_x,x);max_y=max(max_y,y);min_y=min(min_y,y);
    
     %translate images
-    input_images{i}=imtranslate(input_images{i},[x,y]);
+    input_images{i}=imtranslate(input_images{i},[x,y],'FillValues',255);
     end
 end
 
 %crop images
-xmin=max_x % reversed because max_x represents maximum amount translated to the right
-ymin=max_y
 width=size(reference_image,1)-abs(max_x)-abs(min_x)
 height=size(reference_image,2)-abs(max_y)-abs(min_y)
 for i=1:n
-    input_images{i}=imcrop(input_images{i},[xmin ymin width height]);
+    input_images{i}=imcrop(input_images{i},[max_x max_y width height]);
 end
 
 %return images
@@ -42,7 +40,7 @@ end % end of function
 function [x,y]=ward_MTB(reference_image, image, depth)
 
 if (depth == 0) 
-    x=0;y=0;return
+    x=0;y=0;return;
 end
 
 % Gaussian filter from http://stackoverflow.com/questions/8204645/implementing-
@@ -98,14 +96,13 @@ image_MTB=imtranslate(image_MTB,[x,y],'FillValues',255);
 
 for i=-1:1
     for j=-1:1;
-        image_MTB=imtranslate(image_MTB,[i,j]);
-        error = sum(sum(xor(reference_MTB(abs(x)+2:height-abs(x)-1,abs(y)+2:width-abs(y)-1), image_MTB(abs(x)+2:height-abs(x)-1,abs(y)+2:width-abs(y)-1))));
+        image_MTB_test=imtranslate(image_MTB,[i,j],'FillValues',255);
+        error = sum(sum(xor(reference_MTB(abs(x)+2:height-abs(x)-1,abs(y)+2:width-abs(y)-1), image_MTB_test(abs(x)+2:height-abs(x)-1,abs(y)+2:width-abs(y)-1))));
         if (error < min_error) 
             min_error=error; 
             new_x=x+i;
             new_y=y+j;
         end
-        image_MTB=imtranslate(image_MTB,[-i,-j]);
     end
 end
 

@@ -29,7 +29,7 @@ for i = 1:size(hdr,1)
             % color is color correction :  0<=c<=1
             local = c*hdr(i,j,k) + (1-c)*luminance(i,j);
             globe = c*cav(k) + (1-c)*lav;
-            % a is chromatic adaptation
+            % a is light adaptation
             la = a*local + (1-a) * globe;
             hdr(i,j,k) = hdr(i,j,k) / (hdr(i,j,k) + (f*la)^m);
         end
