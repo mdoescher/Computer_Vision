@@ -1,4 +1,4 @@
-function [ hdrmap ] = reinhard(hdr,f,a,c)
+function [ hdrmap ] = reinhard(hdr,f,m,a,c)
 % Reinhard's tonemapping algorithm from: 
 %http://pages.cs.wisc.edu/~lizhang/courses/cs766-2012f/projects/hdr/Reinhard2005DRR.pdf
 
@@ -17,7 +17,11 @@ cav = [cred cgreen cblue];
 
 % key
 k = (lmax-lav)/(lmax-lmin);
-m = 0.3 + 0.7*k^(1.4);
+
+% m adjusts contrast. if contrast is set to at most zero, contrast defaults to this value.
+if m <= 0
+    m = 0.3 + 0.7*k^(1.4);
+end
 f = exp(-f); % equation 5 - f is intensity
 for i = 1:size(hdr,1)
     for j = 1:size(hdr,2)
