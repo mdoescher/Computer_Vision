@@ -1,4 +1,4 @@
-function [ hdrmap ] = drago(hdr, bias, expo, cont)
+function [ hdrmap ] = drago(hdr, bias, expo, cont, gamma)
 % Drago tonemapping
 % http://pages.cs.wisc.edu/~lizhang/courses/cs766-2012f/projects/hdr/Drago2003ALM.pdf
 
@@ -21,7 +21,7 @@ end
 hdrmap=Yxy2rgb(hdr);
 
 % gamma correction - from paper - uncomment to use
-% hdrmap(:,:,1) = hdrmap(:,:,1).^(1/2.2);
-% hdrmap(:,:,2) = hdrmap(:,:,2).^(1/2.2);
-% hdrmap(:,:,3) = hdrmap(:,:,3).^(1/2.2);
+hdrmap(:,:,1) = hdrmap(:,:,1).^(1/gamma);
+hdrmap(:,:,2) = hdrmap(:,:,2).^(1/gamma);
+hdrmap(:,:,3) = hdrmap(:,:,3).^(1/gamma);
 

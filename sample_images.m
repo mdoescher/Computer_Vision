@@ -2,11 +2,9 @@ function[red,green,blue]=sample_images(aligned_images)
 % this function selects sample points from the image to use for the camera
 % response function determination
 
-
-
 % This number of sample pixels will result in an overdetermined system for
 % the least squares fitting step
-numpics=length(aligned_images)
+numpics=length(aligned_images);
 numsamplepixels=ceil(255/(numpics-1))*2*5;
 
 % Total pixels in the image

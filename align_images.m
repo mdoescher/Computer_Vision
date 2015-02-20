@@ -5,7 +5,7 @@ function[images]=align_images(input_images, depth)
 % grab the middle image and use this as the reference image to which the
 % other images will be aligned.
 n=length(input_images);
-reference_image_number = int32(n / 2)
+reference_image_number = int32(n / 2);
 reference_image = input_images{reference_image_number};
 
 % keep track of maximum offsets applied - for cropping
@@ -14,7 +14,6 @@ gray_reference=rgb2gray(reference_image);
 
 % recursive ward_MTB algorithm
 for i=1:n
-    i
     if (i~= reference_image_number)
     [x,y]=ward_MTB(gray_reference, rgb2gray(input_images{i}), depth);
     max_x=max(max_x,x);min_x=min(min_x,x);max_y=max(max_y,y);min_y=min(min_y,y);
@@ -25,8 +24,8 @@ for i=1:n
 end
 
 %crop images
-width=size(reference_image,1)-abs(max_x)-abs(min_x)
-height=size(reference_image,2)-abs(max_y)-abs(min_y)
+width=size(reference_image,1)-abs(max_x)-abs(min_x);
+height=size(reference_image,2)-abs(max_y)-abs(min_y);
 for i=1:n
     input_images{i}=imcrop(input_images{i},[max_x max_y width height]);
 end
